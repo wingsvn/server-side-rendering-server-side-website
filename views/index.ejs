@@ -31,23 +31,32 @@
 
 <!-- sectie 3 -->
 <h2>All stories</h2> 
-<% languages.forEach(language => { %>
-<button>
-    <img src="../icons/dutch">
-</button>
-<% }) %>
-<a href="#">Show all</a>
+
+<div class="languages-container">
+    <!--hier mee selecteer ik alleen de eerste 2 data uit de directus API-->
+    <% languages.slice(0, 2).forEach(language => { %>
+    <button class="languages">
+        <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>">
+        <h3> <%= language.language %> </h3>
+    </button>
+    <% }) %>
+    <a href="#">Show all</a>
+</div>
+
+
 
 
 <ul class="stories">
     <% stories.forEach(story => { %>
     <li>
-        <img>
-        <h3> <%= story.title %> </h3>
-        <img>
-        <p> <%= story.summary %> </p>
-        <button></button>
-        <p>3 min. 5 sec</p>
+        <img class="story-image" src="https://fdnd-agency.directus.app/assets/<%= story.image %>">
+        <div class="story-details">
+            <h3> <%= story.title %> </h3>
+            <img src="../icons/english.svg">
+            <p> <%= story.summary %> </p>
+            <button></button>
+            <p>3 min. 5 sec</p>
+        </div>
     </li>
     <% }) %>
 </ul>

@@ -6,12 +6,9 @@ import express from 'express'
 // Importeer de zelfgemaakte functie fetchJson uit de ./helpers map
 import fetchJson from './helpers/fetch-json.js'
 
-// Haal alle stories uit de directus API op
-const storyData = await fetchJson('https://fdnd-agency.directus.app/items/tm_story')
+// Stel het basis endpoint in
+const apiUrl = 'https://fdnd-agency.directus.app/items'
 
-const languageData = await fetchJson('https://fdnd-agency.directus.app/items/tm_languages')
-const audioData = await fetchJson('https://fdnd-agency.directus.app/items/tm_audio')
-const playlistData = await fetchJson('https://fdnd-agency.directus.app/items/tm_playlist')
 
 // Maak een nieuwe express app aan
 const app = express()
@@ -32,42 +29,25 @@ app.use(express.urlencoded({extended: true}))
 
 // Maak een GET route voor de index
 app.get('/', function(request, response) {
-    // Haal alle stories uit de directus API op
-    fetchJson('https://fdnd-agency.directus.app/items/tm_story').then((storyData) => {
+    // Haal alle gegevens uit de directus API op
+  Promise.all([ // Fetch data from all endpoints concurrently using Promise.all()
+    fetchJson('https://fdnd-agency.directus.app/items/tm_story'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_audio'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_playlist')
+  ]).then(([storyData, languageData, audioData, playlistData]) => {
       // storyData bevat gegevens van alle stories
       // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
   
       // Render index.ejs uit de views map en geef de opgehaalde data mee als variabele, genaamd stories
-      // Geef ook de messages mee als variabele
       response.render('index', {
-        stories: storyData.data,
-      })
+        stories: storyData.data, // Pass fetched story data to the view under the 'stories' key
+        languages: languageData.data, // Pass fetched language data to the view under the 'languages' key
+        playlists: playlistData.data, // Pass fetched playlist data to the view under the 'playlists' key
+        audio: audioData.data}) // Pass fetched audio data to the view under the 'audio' key
     })
   })
 
-  app.get('/', function(request, response) {
-    fetchJson('https://fdnd-agency.directus.app/items/tm_language').then((languageData) => {
-      response.render('index', {
-        languages: languageData.data,
-      })
-    })
-  })
-
-  app.get('/', function(request, response) {
-    fetchJson('https://fdnd-agency.directus.app/items/tm_audio').then((audioData)=> {
-      response.render('index',{
-        audios: audioData.data,
-      })
-    })
-  })
-
-  app.get('/', function(request, response) {
-    fetchJson('https://fdnd-agency.directus.app/items/tm_playlist').then((playlistData)=> {
-      response.render('index',{
-        playlists: playlistData.data,
-      })
-    })
-  })
 
 
 // 3. Start de webserver
