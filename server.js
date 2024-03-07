@@ -6,8 +6,12 @@ import express from 'express'
 // Importeer de zelfgemaakte functie fetchJson uit de ./helpers map
 import fetchJson from './helpers/fetch-json.js'
 
-// Haal alle squads uit de directus API op
+// Haal alle stories uit de directus API op
 const storyData = await fetchJson('https://fdnd-agency.directus.app/items/tm_story')
+
+const languageData = await fetchJson('https://fdnd-agency.directus.app/items/tm_languages')
+const audioData = await fetchJson('https://fdnd-agency.directus.app/items/tm_audio')
+const playlistData = await fetchJson('https://fdnd-agency.directus.app/items/tm_playlist')
 
 // Maak een nieuwe express app aan
 const app = express()
@@ -37,6 +41,30 @@ app.get('/', function(request, response) {
       // Geef ook de messages mee als variabele
       response.render('index', {
         stories: storyData.data,
+      })
+    })
+  })
+
+  app.get('/', function(request, response) {
+    fetchJson('https://fdnd-agency.directus.app/items/tm_language').then((languageData) => {
+      response.render('index', {
+        languages: languageData.data,
+      })
+    })
+  })
+
+  app.get('/', function(request, response) {
+    fetchJson('https://fdnd-agency.directus.app/items/tm_audio').then((audioData)=> {
+      response.render('index',{
+        audios: audioData.data,
+      })
+    })
+  })
+
+  app.get('/', function(request, response) {
+    fetchJson('https://fdnd-agency.directus.app/items/tm_playlist').then((playlistData)=> {
+      response.render('index',{
+        playlists: playlistData.data,
       })
     })
   })

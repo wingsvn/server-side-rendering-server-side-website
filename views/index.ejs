@@ -1,9 +1,56 @@
 <%- include('./partials/head') %>
 
-TuMi Mundo
-<% stories.forEach(story => { %>
-    <p><%= story.title %></p>
+<header>
+    <h1>Lessons</h1>
+</header>
+
+<!-- sectie 1 -->
+<div class="horizontal-list-container">
+    <ol>
+        <li>
+            <a href="#">Listening</a>
+            <img src="../icons/Music-Note-2.svg">
+        </li>
+        <!-- <li>
+            <a href="#">Your first words</a>
+            <img src="../icons/Music-Note-2.svg">
+        </li> -->
+    </ol>
+</div>
+
+<!-- sectie 2 -->
+<!-- <h2>Own playlist</h2>
+    <ul>
+        <li>
+            <img scr="#">
+            <a href="#"></a>
+            <
+        </li>
+    </ul> -->
+
+
+<!-- sectie 3 -->
+<h2>All stories</h2> 
+<% languages.forEach(language => { %>
+<button>
+    <img src="../icons/dutch">
+</button>
 <% }) %>
+<a href="#">Show all</a>
+
+
+<ul class="stories">
+    <% stories.forEach(story => { %>
+    <li>
+        <img>
+        <h3> <%= story.title %> </h3>
+        <img>
+        <p> <%= story.summary %> </p>
+        <button></button>
+        <p>3 min. 5 sec</p>
+    </li>
+    <% }) %>
+</ul>
 
 
 <%- include('./partials/foot') %>
