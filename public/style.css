@@ -155,7 +155,6 @@ h2 {
     margin-top: 2rem;
 }
 div.languages-container {
-    /* overflow-x: scroll; */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -204,12 +203,9 @@ div.story-details img {
     height: 0.75rem;
 }
 
-
-
 a {
     color: var(--text-color-white);
     text-decoration: none;
-
 }
 
 
