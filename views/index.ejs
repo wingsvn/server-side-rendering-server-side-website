@@ -18,32 +18,43 @@
     </ol>
 </div>
 
-<!-- sectie 2 -->
-<!-- <h2>Own playlist</h2>
-    <ul>
-        <li>
-            <img scr="#">
-            <a href="#"></a>
-            <
+<!-- sectie 2 - own playlist -->
+<h2>Own playlist</h2>
+    <ul class="playlist">
+        <% stories.slice(2, 3).forEach(story => { %>
+        <li class="playlist-story">
+            <img class="playlist-image" src="https://fdnd-agency.directus.app/assets/<%= story.image %>">
+            <h3> <%= story.title %> </h3>
+            <div class="playtime">
+                <button>
+                    <img src="../icons/play-orange.svg" alt="play-button">
+                </button>
+                <p><span>31 min. 55 sec</span></p>
+            </div>
         </li>
-    </ul> -->
+        <% }) %>
+        <article class="add-playlist">
+            <img src="../icons/add.svg" alt="plus sign">
+            <h3>Make a playlist!</h3>
+            <p>Add your favorite stories in one playlist</p>
+        </article>
+    </ul>
 
 
-<!-- sectie 3 -->
+<!-- sectie 3 - all stories -->
 <h2>All stories</h2> 
-
-<div class="languages-container">
-    <!--hier mee selecteer ik alleen de eerste 2 data uit de directus API-->
-    <% languages.slice(0, 2).forEach(language => { %>
-    <button class="languages">
-        <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>">
-        <h3> <%= language.language %> </h3>
-    </button>
-    <% }) %>
+<div class="story-options">
+    <div class="languages-container">
+        <!--hier mee selecteer ik alleen de eerste 2 languages uit de directus API-->
+        <% languages.slice(0, 2).forEach(language => { %>
+        <button class="languages">
+            <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>">
+            <h3> <%= language.language %> </h3>
+        </button>
+        <% }) %>
+    </div>
     <a href="#">Show all</a>
 </div>
-
-
 
 
 <ul class="stories">
@@ -51,11 +62,71 @@
     <li>
         <img class="story-image" src="https://fdnd-agency.directus.app/assets/<%= story.image %>">
         <div class="story-details">
-            <h3> <%= story.title %> </h3>
-            <img src="../icons/english.svg">
+            <div class="title-flag">
+                <h3> <%= story.title %> </h3>
+                <img src="../icons/english.svg" alt="flag">
+            </div>
             <p> <%= story.summary %> </p>
-            <button></button>
-            <p>3 min. 5 sec</p>
+            <div class="story-links">
+                <div class="playtime">
+                    <button>
+                        <img src="../icons/play-blue.svg" alt="play-button">
+                    </button>
+                    <p>3 min. 5 sec</p>
+                </div>
+                <div class="download">
+                    <button>
+                        <img src="../icons/download.svg" alt="download">
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </li>
+    <% }) %>
+</ul>
+
+<!-- deel 4 - liked playlist -->
+
+<h2>Liked playlist</h2> 
+<ul class="playlist">
+    <% playlists.forEach(playlist => { %>
+    <li class="playlist-story">
+        <img class="playlist-image" src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>">
+        <h3> <%= playlist.title %> </h3>
+        <div class="playlist-links">
+            <div class="playtime">
+                <button>
+                    <img src="../icons/play-orange.svg" alt="play-button">
+                </button>
+                <p><span>31 min. 55 sec</span></p>
+            </div>
+            <button>
+                <img src="../icons/heart.svg" alt="heart">
+            </button>
+        </div>  
+    </li>
+    <% }) %>
+</ul>
+
+<!-- deel 5 - suggested playlist -->
+
+<h2>Suggested playlist</h2> 
+<ul class="playlist">
+    <% playlists.forEach(playlist => { %>
+    <li class="playlist-story">
+        <img class="playlist-image" src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>">
+        <h3> <%= playlist.title %> </h3>
+        <div class="playlist-links">
+            <div class="playtime">
+                <button>
+                    <img src="../icons/play-orange.svg" alt="play-button">
+                </button>
+                <p><span>31 min. 55 sec</span></p>
+            </div>
+            <button>
+                <img src="../icons/heart.svg" alt="heart">
+            </button>
         </div>
     </li>
     <% }) %>
