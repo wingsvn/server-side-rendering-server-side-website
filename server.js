@@ -48,6 +48,109 @@ app.get('/', function(request, response) {
     })
   })
 
+  // Maak een GET route voor de stories pagina
+  app.get('/index/stories', function(request, response) {
+    Promise.all([ // Fetch data from all endpoints concurrently using Promise.all()
+    fetchJson('https://fdnd-agency.directus.app/items/tm_story'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_audio'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_playlist')
+  ]).then(([storyData, languageData, audioData, playlistData]) => {
+      
+      response.render('stories', {
+        stories: storyData.data,
+        languages: languageData.data,
+        playlists: playlistData.data,
+        audio: audioData.data})
+    })
+  })
+
+   // Maak een GET route voor de playlists pagina
+   app.get('/index/playlist', function(request, response) {
+    Promise.all([ // Fetch data from all endpoints concurrently using Promise.all()
+    fetchJson('https://fdnd-agency.directus.app/items/tm_story'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_audio'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_playlist')
+  ]).then(([storyData, languageData, audioData, playlistData]) => {
+      
+      response.render('playlist', {
+        stories: storyData.data,
+        languages: languageData.data,
+        playlists: playlistData.data,
+        audio: audioData.data})
+    })
+  })
+
+   // Maak een GET route voor de home pagina
+   app.get('/index/home', function(request, response) {
+    Promise.all([ // Fetch data from all endpoints concurrently using Promise.all()
+    fetchJson('https://fdnd-agency.directus.app/items/tm_story'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_audio'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_playlist')
+  ]).then(([storyData, languageData, audioData, playlistData]) => {
+      
+      response.render('home', {
+        stories: storyData.data,
+        languages: languageData.data,
+        playlists: playlistData.data,
+        audio: audioData.data})
+    })
+  })
+
+   // Maak een GET route voor de testing pagina
+   app.get('/index/testing', function(request, response) {
+    Promise.all([ // Fetch data from all endpoints concurrently using Promise.all()
+    fetchJson('https://fdnd-agency.directus.app/items/tm_story'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_audio'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_playlist')
+  ]).then(([storyData, languageData, audioData, playlistData]) => {
+      
+      response.render('testing', {
+        stories: storyData.data,
+        languages: languageData.data,
+        playlists: playlistData.data,
+        audio: audioData.data})
+    })
+  })
+
+   // Maak een GET route voor de statistics pagina
+   app.get('/index/statistics', function(request, response) {
+    Promise.all([ // Fetch data from all endpoints concurrently using Promise.all()
+    fetchJson('https://fdnd-agency.directus.app/items/tm_story'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_audio'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_playlist')
+  ]).then(([storyData, languageData, audioData, playlistData]) => {
+      
+      response.render('statistics', {
+        stories: storyData.data,
+        languages: languageData.data,
+        playlists: playlistData.data,
+        audio: audioData.data})
+    })
+  })
+
+   // Maak een GET route voor de profile pagina
+   app.get('/index/profile', function(request, response) {
+    Promise.all([ // Fetch data from all endpoints concurrently using Promise.all()
+    fetchJson('https://fdnd-agency.directus.app/items/tm_story'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_language'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_audio'),
+    fetchJson('https://fdnd-agency.directus.app/items/tm_playlist')
+  ]).then(([storyData, languageData, audioData, playlistData]) => {
+      
+      response.render('profile', {
+        stories: storyData.data,
+        languages: languageData.data,
+        playlists: playlistData.data,
+        audio: audioData.data})
+    })
+  })
+
+
 
 
 // 3. Start de webserver

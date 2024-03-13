@@ -1,53 +1,55 @@
 <%- include('./partials/head') %>
 
-
-<nav>
+<nav id="menu">
     <ul>
         <li>
-            <a href="./home.ejs">
-                <img src="../icons/home.svg">
+            <a href="index/home" aria-label="home-page">
+                <img src="../icons/home.svg" alt="home icon">
             </a>
         </li>
 
         <li>
-            <a href="#">
-                <img src="../icons/testing.svg">
+            <a href="index/testing" aria-label="testing-page">
+                <img src="../icons/testing.svg" alt="testing icon">
             </a>
         </li>
 
         <li>
-            <a href="./index.ejs">
-                <img src="../icons/lessons.svg">
+            <a href="#" aria-label="lessons-page">
+                <img src="../icons/lessons.svg" alt="book icon">
             </a>
         </li>
 
         <li>
-            <a href="">
-                <img src="../icons/statistics.svg">
+            <a href="index/statistics" aria-label="statistics-page">
+                <img src="../icons/statistics.svg" alt="statistics icon">
             </a>
         </li>
 
         <li>
-            <a href="">
-                <img src="../icons/profile.svg">
+            <a href="index/profile" aria-label="profile">
+                <img src="../icons/profile.svg" alt="profile icon">
             </a>
         </li>
     </ul>
-    <button class="hamburger">
-        <img src="../icons/menu.svg">
-    </button>
+    <a class="close" href="#" aria-label="homepage">
+        <img src="../icons/close.svg" alt="close icon">
+    </a>
 </nav>
+
+<a class="hamburger" href="#menu" aria-label="navigation">
+    <img src="../icons/menu.svg" alt="hamburger menu">
+</a>
 
 <header>
     <h1>Lessons</h1>
 </header>
 
-<!-- sectie 1 -->
 <div class="horizontal-list-container">
     <ol>
         <li>
-            <a href="#">Listening</a>
-            <img src="../icons/Music-Note-2.svg">
+            <a href="#" aria-label="" >Listening</a>
+            <img src="../icons/Music-Note-2.svg" alt="music note">
         </li>
         <!-- <li>
             <a href="#">Your first words</a>
@@ -56,12 +58,11 @@
     </ol>
 </div>
 
-<!-- sectie 2 - own playlist -->
 <h2>Own playlist</h2>
     <ul class="playlist">
         <% stories.slice(2, 3).forEach(story => { %>
         <li class="playlist-story">
-            <img class="playlist-image" src="https://fdnd-agency.directus.app/assets/<%= story.image %>">
+            <img class="playlist-image" src="https://fdnd-agency.directus.app/assets/<%= story.image %>" alt="story image">
             <h3> <%= story.title %> </h3>
             <div class="playtime">
                 <button>
@@ -78,27 +79,24 @@
         </article>
     </ul>
 
-
-<!-- sectie 3 - all stories -->
 <h2>All stories</h2> 
 <div class="story-options">
     <div class="languages-container">
         <!--hier mee selecteer ik alleen de eerste 2 languages uit de directus API-->
         <% languages.slice(0, 2).forEach(language => { %>
         <button class="languages">
-            <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>">
+            <img src="https://fdnd-agency.directus.app/assets/<%= language.flag %>" alt="language flag">
             <h3> <%= language.language %> </h3>
         </button>
         <% }) %>
     </div>
-    <a href="#">Show all</a>
+    <a href="/index/stories">Show all</a>
 </div>
-
 
 <ul class="stories">
     <% stories.forEach(story => { %>
     <li>
-        <img class="story-image" src="https://fdnd-agency.directus.app/assets/<%= story.image %>">
+        <img class="story-image" src="https://fdnd-agency.directus.app/assets/<%= story.image %>" alt="story image">
         <div class="story-details">
             <div class="title-flag">
                 <h3> <%= story.title %> </h3>
@@ -118,19 +116,16 @@
                     </button>
                 </div>
             </div>
-            
         </div>
     </li>
     <% }) %>
 </ul>
 
-<!-- deel 4 - liked playlist -->
-
 <h2>Liked playlist</h2> 
 <ul class="playlist">
     <% playlists.forEach(playlist => { %>
     <li class="playlist-story">
-        <img class="playlist-image" src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>">
+        <img class="playlist-image" src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>" alt="story image">
         <h3> <%= playlist.title %> </h3>
         <div class="playlist-links">
             <div class="playtime">
@@ -147,13 +142,11 @@
     <% }) %>
 </ul>
 
-<!-- deel 5 - suggested playlist -->
-
 <h2>Suggested playlist</h2> 
 <ul class="playlist">
     <% playlists.forEach(playlist => { %>
     <li class="playlist-story">
-        <img class="playlist-image" src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>">
+        <img class="playlist-image" src="https://fdnd-agency.directus.app/assets/<%= playlist.image %>" alt="story-image">
         <h3> <%= playlist.title %> </h3>
         <div class="playlist-links">
             <div class="playtime">
